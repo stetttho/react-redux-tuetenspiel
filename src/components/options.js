@@ -4,17 +4,36 @@ import { Link } from 'react-router-dom';
 import { deleteOption, addOption, editOption } from '../actions';
 
 class Options extends Component {
+    constructor(props) {
+        super(props);
+
+
+    }
     render() {
         return (
+          
             <div>
-                Editable Option List should show up here
+                <div>
+                    <Link to="/">Back to Game</Link>
+                </div>
+                List of Options:
+                <ul>
+            {this.props.list.map( (option, idx) => {
+                return (
+                   <li key={idx}>{option}</li>
+                )
+              })
+            }
+          </ul>
+  
             </div>
+           
         );
     }
 }
 
 function mapStateToProps(state) {
-    return { options: state.options };
+    return { list: state.options.list };
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,6 +1,7 @@
 export const DELETE_OPTION = 'delete_option';
 export const ADD_OPTION = 'add_option';
 export const EDIT_OPTION = 'edit_option';
+export const START_GAME = 'start_game';
 
 
 export function deleteOption(values) {
@@ -24,5 +25,12 @@ export function editOption(values) {
         type: EDIT_OPTION,
         payload: values
         
+    };
+}
+
+export function startGame(values) {
+    return {
+        type: START_GAME,
+        payload: values
     };
 }

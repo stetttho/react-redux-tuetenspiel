@@ -8,10 +8,24 @@ import reducers from './reducers';
 import Options from './components/options';
 import Game from './components/game';
 
-const store = createStore(reducers);
+const initialState = {
+    options: {
+        list: [
+        'Wein',
+        'Bier',
+        'Spielen',
+        'Lesen' ],
+        dead: [],
+        alive: []
+    }
+   
+}
+
+const store = createStore(reducers, initialState);
 
 ReactDOM.render(
     <Provider store={store} >
+        
         <BrowserRouter>
             <div>
                 <Switch>
