@@ -6,9 +6,31 @@ import { deleteOption, addOption, editOption } from '../actions';
 class Options extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            input: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        
 
     }
+    
+
+    handleChange(event) {
+        
+        this.setState({
+            input: event.target.value
+        });
+
+    }
+
+    handleSubmit() {
+        this.props.addNewOption(this.state.input);
+        this.setState({
+            input: ''
+        });
+    }
+
     render() {
         return (
           
@@ -24,6 +46,7 @@ class Options extends Component {
                 )
               })
             }
+            <li><input value={this.state.input} onChange={this.handleChange} type="text" /><button onClick={this.handleSubmit}>add</button></li>
           </ul>
   
             </div>
@@ -33,13 +56,14 @@ class Options extends Component {
 }
 
 function mapStateToProps(state) {
-    return { list: state.options.list };
+    return { list: state.options.list
+              };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        options: (option) => {
-            dispatch(addOption(option))
+        addNewOption: (newOption) => {
+            dispatch(addOption(newOption))
         }
     }
 };
