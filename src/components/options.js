@@ -42,7 +42,7 @@ class Options extends Component {
                 <ul>
             {this.props.list.map( (option, idx) => {
                 return (
-                   <li key={idx}>{option}</li>
+                   <li key={idx}>{option} <i className="fa fa-pencil"></i><i className="fa fa-close" ></i></li>
                 )
               })
             }
