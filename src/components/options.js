@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteOption, addOption, editOption } from '../actions';
+import { addOption } from '../actions';
+import Option from './option';
+import EditOption from './editoption';
 
 class Options extends Component {
     constructor(props) {
@@ -11,17 +13,12 @@ class Options extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        
-
     }
     
-
-    handleChange(event) {
-        
+    handleChange(event) {  
         this.setState({
             input: event.target.value
         });
-
     }
 
     handleSubmit() {
@@ -32,25 +29,25 @@ class Options extends Component {
     }
 
     render() {
-        return (
-          
+        return (       
             <div>
                 <div>
                     <Link to="/">Back to Game</Link>
                 </div>
                 List of Options:
                 <ul>
-            {this.props.list.map( (option, idx) => {
-                return (
-                   <li key={idx}>{option} <i className="fa fa-pencil"></i><i className="fa fa-close" ></i></li>
+            {this.props.list.map( (option) => {
+                return (        
+                   <li key={option.id}>
+                    {option.editing ? <EditOption title={option.title} id={option.id} /> :
+                            <Option id={option.id} title={option.title} />}      
+                   </li>
                 )
               })
             }
-            <li><input value={this.state.input} onChange={this.handleChange} type="text" /><button onClick={this.handleSubmit}>add</button></li>
-          </ul>
-  
-            </div>
-           
+                <li><input value={this.state.input} onChange={this.handleChange} type="text" /><button onClick={this.handleSubmit}>add</button></li>
+                </ul>
+            </div>        
         );
     }
 }
